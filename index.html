@@ -12,29 +12,21 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body class="bg-brand">
-    <main>
-      <!-- Header / Navigation (no Bootstrap) -->
+    <main class="home-main">
+      <!-- Header / Navigation -->
       <nav class="site-nav">
-        <div class="container nav-inner">
+        <div class="nav-inner">
           <a class="brand" href="#" aria-label="Uragentur home">
             <span aria-hidden="true">
               <img
                 src="assets/images/Ur Stern schwarz Kopie.svg"
                 alt="Uragentur Stern Logo"
                 class="brand-logo"
-                width="160"
-                height="auto"
               />
             </span>
           </a>
           <a class="menu-toggle" href="menu/" aria-label="Menü">
-            <img
-              src="assets/icons/list.svg"
-              alt="Menü"
-              class="menu-icon"
-              width="36"
-              height="36"
-            />
+            <img src="assets/icons/burger.svg" alt="Menü" class="menu-icon" />
           </a>
         </div>
       </nav>
@@ -43,15 +35,19 @@
       <section class="hero">
         <div class="container">
           <div class="hero-canvas">
-            <img
-              src="assets/images/video_placeholder.jpg"
-              alt="Placeholder video"
-              class="hero-art"
-            />
+            <video
+              class="hero-video"
+              src="assets/videos/placeholder_video.mp4"
+              autoplay
+              muted
+              playsinline
+            ></video>
+          </div>
+          <div class="hero-mobile-image-container">
             <img
               src="assets/images/grillz_krawall.png"
-              alt="Overlay graphic"
-              class="hero-overlay"
+              alt="Bild Krawall Grillz"
+              class="hero-mobile-image"
             />
           </div>
         </div>
@@ -59,7 +55,7 @@
     </main>
     <!-- Footer -->
     <footer class="site-footer">
-      <div class="container footer-inner">
+      <div class="footer-inner">
         <div class="footer-left">
           <div class="footer-brand">
             <img

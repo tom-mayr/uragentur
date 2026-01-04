@@ -14,25 +14,21 @@
     <main>
       <!-- Header -->
       <nav class="site-nav">
-        <div class="container nav-inner">
+        <div class="nav-inner">
           <a class="brand" href="../" aria-label="Zur Startseite">
             <span aria-hidden="true">
               <img
                 src="../assets/images/Ur Stern schwarz Kopie.svg"
                 alt="Uragentur Stern Logo"
                 class="brand-logo"
-                width="160"
-                height="auto"
               />
             </span>
           </a>
           <a class="menu-toggle" href="../menu/" aria-label="Menü">
             <img
-              src="../assets/icons/list.svg"
+              src="../assets/icons/burger.svg"
               alt="Menü"
               class="menu-icon"
-              width="36"
-              height="36"
             />
           </a>
         </div>
@@ -220,7 +216,7 @@
 
     <!-- Footer -->
     <footer class="site-footer">
-      <div class="container footer-inner">
+      <div class="footer-inner">
         <div class="footer-left">
           <div class="footer-brand">
             <img
@@ -268,73 +264,6 @@
         </div>
       </div>
     </footer>
-    <script>
-      (function () {
-        const galleries = document.querySelectorAll(".gallery");
-        galleries.forEach((gallery) => {
-          const photo = gallery.querySelector(".gallery-photo");
-          const prev = gallery.querySelector(".gallery-arrow--prev");
-          const next = gallery.querySelector(".gallery-arrow--next");
-          const list = (gallery.getAttribute("data-images") || "")
-            .split(",")
-            .map((s) => s.trim())
-            .filter(Boolean);
-          let index = 0;
-          function render() {
-            if (!list.length) return;
-            photo.src = list[index];
-            prev.disabled = list.length <= 1;
-            next.disabled = list.length <= 1;
-          }
-          prev.addEventListener("click", () => {
-            if (list.length <= 1) return;
-            index = (index - 1 + list.length) % list.length;
-            render();
-          });
-          next.addEventListener("click", () => {
-            if (list.length <= 1) return;
-            index = (index + 1) % list.length;
-            render();
-          });
-          render();
-        });
-
-        // Text galleries: cycle article cards with arrow buttons
-        const textGalleries = document.querySelectorAll(".text-gallery");
-        textGalleries.forEach((tg) => {
-          const prev = tg.querySelector(".gallery-arrow--prev");
-          const next = tg.querySelector(".gallery-arrow--next");
-          const cards = Array.from(tg.querySelectorAll(".article-card"));
-          let index = Math.max(
-            0,
-            cards.findIndex((c) => c.classList.contains("active"))
-          );
-
-          function render() {
-            cards.forEach((c, i) => {
-              c.classList.toggle("active", i === index);
-            });
-            const len = cards.length;
-            if (prev) prev.disabled = len <= 1;
-            if (next) next.disabled = len <= 1;
-          }
-
-          prev &&
-            prev.addEventListener("click", () => {
-              if (cards.length <= 1) return;
-              index = (index - 1 + cards.length) % cards.length;
-              render();
-            });
-          next &&
-            next.addEventListener("click", () => {
-              if (cards.length <= 1) return;
-              index = (index + 1) % cards.length;
-              render();
-            });
-
-          render();
-        });
-      })();
-    </script>
+    <script src="../assets/js/gallery.js" defer></script>
   </body>
 </html>

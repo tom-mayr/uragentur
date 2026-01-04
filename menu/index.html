@@ -11,29 +11,24 @@
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
   <body class="bg-brand">
-    <main>
+    <main class="menu-main">
       <!-- Header -->
       <nav class="site-nav">
-        <div class="container nav-inner">
+        <div class="nav-inner">
           <a class="brand" href="../" aria-label="Zur Startseite">
             <span aria-hidden="true">
               <img
                 src="../assets/images/Ur Stern schwarz Kopie.svg"
                 alt="Uragentur Stern Logo"
                 class="brand-logo"
-                width="160"
-                height="auto"
               />
             </span>
           </a>
-          <!-- simple link in the top-right (can be home or another route) -->
           <a class="menu-toggle" href="../" aria-label="Zur Startseite">
             <img
-              src="../assets/icons/list.svg"
+              src="../assets/icons/burger.svg"
               alt="Menü"
               class="menu-icon"
-              width="36"
-              height="36"
             />
           </a>
         </div>
@@ -41,14 +36,18 @@
 
       <!-- Menu content -->
       <section class="menu-page">
-        <div class="container menu-container">
+        <div class="menu-container">
           <div class="menu-grid">
             <h1 class="menu-title">
               <a href="../about/" class="menu-link">ABOUT US</a>
             </h1>
             <div class="menu-right">
               <a href="../about/#theresa" class="menu-link">Theresa</a>
-              /
+              <img
+                src="../assets/icons/backslash.svg"
+                alt="/"
+                class="menu-slash"
+              />
               <a href="../about/#mira" class="menu-link">Mira</a>
             </div>
 
@@ -57,9 +56,17 @@
             </h1>
             <div class="menu-right">
               <a href="../work/#fotografie" class="menu-link">Fotografie</a>
-              /
+              <img
+                src="../assets/icons/backslash.svg"
+                alt="/"
+                class="menu-slash"
+              />
               <a href="../work/#text" class="menu-link">Text</a>
-              /<br />
+              <img
+                src="../assets/icons/backslash.svg"
+                alt="/"
+                class="menu-slash"
+              /><br />
               <a href="../work/#best-of-both-worlds" class="menu-link"
                 >Best of both worlds</a
               >
@@ -69,10 +76,27 @@
               <a href="../jobs/" class="menu-link">JOBS</a>
             </h1>
             <div class="menu-right">
-              Krawall / Awareness /<br />Gap Magazine / Kinderbuch
+              <span>Krawall</span>
+              <img
+                src="../assets/icons/backslash.svg"
+                alt="/"
+                class="menu-slash"
+              />
+              <span>Awareness</span>
+              <img
+                src="../assets/icons/backslash.svg"
+                alt="/"
+                class="menu-slash"
+              /><br />
+              <span>Gap Magazine</span>
+              <img
+                src="../assets/icons/backslash.svg"
+                alt="/"
+                class="menu-slash"
+              />
+              <span>Kinderbuch</span>
             </div>
           </div>
-          <!-- Optional decorative star on mobile; replace src as needed -->
           <img
             src="../assets/images/Star.png"
             alt="Dekorativer Stern"
@@ -84,7 +108,7 @@
 
     <!-- Footer -->
     <footer class="site-footer">
-      <div class="container footer-inner">
+      <div class="footer-inner">
         <div class="footer-left">
           <div class="footer-brand">
             <img

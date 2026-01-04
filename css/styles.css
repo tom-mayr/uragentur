@@ -44,6 +44,10 @@ main {
   flex: 1 1 auto;
 }
 
+.home-main {
+  min-height: 100vh;
+}
+
 .bg-brand {
   background-color: var(--uragentur-red);
 }
@@ -65,6 +69,9 @@ main {
   background: transparent;
 }
 .nav-inner {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -88,8 +95,8 @@ main {
 .menu-toggle {
   background: transparent;
   border: none;
-  width: 40px;
-  height: 40px;
+  /* width: auto;
+  height: 100%; */
   position: relative;
   cursor: pointer;
   color: #fff;
@@ -100,14 +107,20 @@ main {
 
 .menu-icon {
   display: block;
-  width: 36px;
-  height: 36px;
+  width: 60px;
+  height: auto;
 }
 
-/* shrink brand logo on small screens */
+/* shrink brand logo and menu icon on small screens */
 @media (max-width: 576px) {
   .brand-logo {
     width: 80px;
+  }
+  .menu-icon {
+    width: 30px;
+  }
+  .nav-inner {
+    padding: 0 16px;
   }
 }
 
@@ -119,32 +132,37 @@ main {
   .hero {
     padding: 32px 0 56px;
   }
+  .hero-canvas {
+    padding-bottom: 48px;
+  }
 }
 .hero-canvas {
   position: relative;
-  background: #eee;
+  background: transparent;
   overflow: hidden;
   margin-inline: 0;
 }
-.hero-plus {
-  position: absolute;
-  top: 6px;
-  left: 8px;
-  color: #111;
-  z-index: 2;
-  font-weight: 700;
-}
-.hero-art {
+.hero-video {
   display: block;
   width: 100%;
+  height: auto;
+  object-fit: cover;
 }
-.hero-overlay {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: min(600px, 80%);
-  border-radius: 999px;
+.hero-mobile-image-container {
+  display: none;
+  margin-top: 12px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+.hero-mobile-image {
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 576px) {
+  .hero-mobile-image-container {
+    display: block;
+  }
 }
 
 /* On small screens let hero be edge-to-edge */
@@ -165,7 +183,7 @@ main {
 }
 @media (min-width: 1400px) {
   .hero-canvas {
-    margin-inline: 336px;
+    margin-inline: 192px;
   }
 }
 
@@ -175,12 +193,13 @@ main {
   color: var(--uragentur-black);
 }
 .footer-inner {
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px 64px;
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: start;
   gap: 16px;
-  padding-top: 24px;
-  padding-bottom: 24px;
   font-size: 20px;
 }
 .footer-brand {
@@ -270,16 +289,28 @@ img {
 .menu-page {
   padding: 24px 0 40px;
 }
+.menu-main {
+  height: 100vh;
+}
 .menu-container {
   position: relative;
   margin-inline: 0;
+  padding: 0 64px;
 }
 .menu-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 32px;
+  /* Make columns sized to their content instead of filling width */
+  grid-template-columns: max-content max-content;
+  column-gap: 56px;
   row-gap: 56px;
-  align-items: start;
+  /* Center the grid tracks within the container and start-align items */
+  justify-content: center;
+  justify-items: start;
+  /* Shrink the grid box to its content and center it */
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: last baseline;
 }
 .menu-title {
   margin: 0;
@@ -290,6 +321,11 @@ img {
     Roboto, Arial, sans-serif;
   font-size: clamp(20px, 2.5vw, 50px);
   line-height: 1.3;
+}
+.menu-slash {
+  display: inline-block;
+  height: clamp(20px, 2.5vw, 50px);
+  vertical-align: middle;
 }
 .menu-link {
   color: inherit;
@@ -409,6 +445,10 @@ img {
   .bio-head {
     flex-direction: column;
     gap: 8px;
+  }
+  .footer-inner {
+    font-size: 10px;
+    padding: 24px 16px;
   }
   /* Reset alignment when stacked */
   .bio-head .bio-attrs {
@@ -544,9 +584,14 @@ img {
   }
 }
 @media (max-width: 576px) {
+  .menu-container {
+    padding: 0 16px;
+  }
   .menu-grid {
     grid-template-columns: 1fr;
     row-gap: 0;
+    /* On small screens, let the grid span full width */
+    width: 100%;
   }
   .menu-title {
     font-size: clamp(36px, 12vw, 96px);
@@ -660,6 +705,11 @@ img {
   display: block;
 }
 .article-title {
+  font-family: "Korolev Bold", "Korolev", system-ui, -apple-system, "Segoe UI",
+    Roboto, Arial, sans-serif;
+  text-decoration: underline;
+  text-decoration-color: var(--uragentur-black);
+  color: var(--uragentur-black);
   margin: 0 0 12px;
   font-size: clamp(28px, 5vw, 72px);
 }
