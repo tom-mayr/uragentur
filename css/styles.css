@@ -1,8 +1,15 @@
-/* Base styles without Bootstrap */
+/* Variables and base styles */
 :root {
   --uragentur-red: #e30712;
   --uragentur-black: #000000;
   --uragentur-white: #ffffff;
+  --gutter-sm: 16px;
+  --page-margin: 0;
+  --gutter: 64px;
+  --mobile-margin: 40px;
+  --gallery-gap: 16px;
+  --gallery-arrow-size: clamp(48px, 10vw, 120px);
+  --gallery-max: 1200px;
 }
 
 html {
@@ -17,14 +24,10 @@ h3 {
     Roboto, Arial, sans-serif;
 }
 h1 {
-  font-family: "Korolev Heavy", "Korolev", system-ui, -apple-system, "Segoe UI",
-    Roboto, Arial, sans-serif;
   font-size: clamp(64px, 10vw, 160px);
 }
 
 h2 {
-  font-family: "Korolev Heavy", "Korolev", system-ui, -apple-system, "Segoe UI",
-    Roboto, Arial, sans-serif;
   font-size: clamp(40px, 10vw, 120px);
 }
 
@@ -52,14 +55,14 @@ main {
   background-color: var(--uragentur-red);
 }
 
-.color-brand {
+.text-brand {
   color: var(--uragentur-red);
 }
 
 /* Containers */
 .container {
   width: 100%;
-  padding: 0 16px;
+  padding: 0 var(--gutter-sm);
   margin: 0 auto;
 }
 
@@ -71,7 +74,7 @@ main {
 .nav-inner {
   width: 100%;
   margin: 0 auto;
-  padding: 0 64px;
+  padding: 0 var(--gutter);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -95,8 +98,6 @@ main {
 .menu-toggle {
   background: transparent;
   border: none;
-  /* width: auto;
-  height: 100%; */
   position: relative;
   cursor: pointer;
   color: #fff;
@@ -111,7 +112,6 @@ main {
   height: auto;
 }
 
-/* shrink brand logo and menu icon on small screens */
 @media (max-width: 576px) {
   .brand-logo {
     width: 80px;
@@ -120,7 +120,7 @@ main {
     width: 30px;
   }
   .nav-inner {
-    padding: 0 16px;
+    padding: 0 var(--gutter-sm);
   }
 }
 
@@ -140,7 +140,7 @@ main {
   position: relative;
   background: transparent;
   overflow: hidden;
-  margin-inline: 0;
+  margin-inline: var(--page-margin);
 }
 .hero-video {
   display: block;
@@ -151,8 +151,8 @@ main {
 .hero-mobile-image-container {
   display: none;
   margin-top: 12px;
-  margin-left: 40px;
-  margin-right: 40px;
+  margin-left: var(--mobile-margin);
+  margin-right: var(--mobile-margin);
 }
 .hero-mobile-image {
   width: 100%;
@@ -165,25 +165,24 @@ main {
   }
 }
 
-/* On small screens let hero be edge-to-edge */
 @media (max-width: 576px) {
   .hero .container {
     padding: 0;
   }
 }
-@media (min-width: 992px) {
-  .hero-canvas {
-    margin-inline: 48px;
+@media (min-width: 768px) {
+  :root {
+    --page-margin: 16px;
   }
 }
-@media (min-width: 768px) {
-  .hero-canvas {
-    margin-inline: 16px;
+@media (min-width: 992px) {
+  :root {
+    --page-margin: 48px;
   }
 }
 @media (min-width: 1400px) {
-  .hero-canvas {
-    margin-inline: 192px;
+  :root {
+    --page-margin: 192px;
   }
 }
 
@@ -195,7 +194,7 @@ main {
 .footer-inner {
   width: 100%;
   margin: 0 auto;
-  padding: 24px 64px;
+  padding: 24px var(--gutter);
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: start;
@@ -259,7 +258,6 @@ img {
   user-select: none;
 }
 
-/* Small-screen footer sizing to preserve layout */
 @media (max-width: 576px) {
   .footer-inner {
     font-size: 10px;
@@ -295,18 +293,16 @@ img {
 .menu-container {
   position: relative;
   margin-inline: 0;
-  padding: 0 64px;
+  padding: 0 var(--gutter);
+  margin-inline: var(--page-margin);
 }
 .menu-grid {
   display: grid;
-  /* Make columns sized to their content instead of filling width */
   grid-template-columns: max-content max-content;
   column-gap: 56px;
   row-gap: 56px;
-  /* Center the grid tracks within the container and start-align items */
   justify-content: center;
   justify-items: start;
-  /* Shrink the grid box to its content and center it */
   width: max-content;
   margin-left: auto;
   margin-right: auto;
@@ -353,10 +349,21 @@ img {
     Roboto, Arial, sans-serif;
   line-height: 1.35;
   max-width: 46ch;
-  padding: 32px 16px;
+  padding: 32px var(--gutter-sm);
 }
 .about-section--hero {
   padding: 24px 0 40px;
+}
+.about-section--hero .about-container {
+  padding: 0 var(--gutter);
+}
+@media (max-width: 576px) {
+  .about-section--hero .about-container {
+    padding: 0 var(--gutter-sm);
+  }
+}
+.about-section--hero .bio-head {
+  padding: 0;
 }
 .about-section--hero .bio-left {
   padding-top: 0;
@@ -430,15 +437,13 @@ img {
   display: flex;
   align-items: flex-start;
   gap: 4px;
-  padding: 0 16px;
+  padding: 0 var(--gutter-sm);
 }
 .bio-head .bio-title {
   margin-bottom: 0;
 }
 .bio-head .bio-attrs {
   margin: 0;
-}
-.bio-head .bio-attrs {
   margin-left: 48px;
 }
 @media (max-width: 768px) {
@@ -448,14 +453,12 @@ img {
   }
   .footer-inner {
     font-size: 10px;
-    padding: 24px 16px;
+    padding: 24px var(--gutter-sm);
   }
-  /* Reset alignment when stacked */
   .bio-head .bio-attrs {
     margin-left: 0;
   }
 }
-/* Single column on small screens for hero text */
 @media (max-width: 768px) {
   .about-section--hero .about-text {
     column-count: 1;
@@ -495,20 +498,7 @@ img {
   top: -10%;
   width: 50%;
 }
-.bio-bullets {
-  margin: 24px 0 0;
-  padding: 0 0 0 24px;
-  font-size: clamp(18px, 3.5vw, 75px);
-  font-family: "Korolev Light", "Korolev", system-ui, -apple-system, "Segoe UI",
-    Roboto, Arial, sans-serif;
-  line-height: 1.25;
-}
-.bio-bullets li {
-  margin-bottom: 18px;
-}
-.bullet-text {
-  max-width: 26ch;
-}
+.bio-bullets,
 .bio-text-list {
   margin: 24px 0 0;
   padding: 0 0 0 24px;
@@ -517,8 +507,12 @@ img {
     Roboto, Arial, sans-serif;
   line-height: 1.25;
 }
+.bio-bullets li,
 .bio-text-list-item {
   margin-bottom: 18px;
+}
+.bullet-text,
+.bio-text-list-item {
   max-width: 26ch;
 }
 
@@ -540,7 +534,6 @@ img {
   }
 }
 
-/* Specific image proportions on larger screens */
 @media (min-width: 992px) {
   .about-section--theresa .about-container .bio-grid {
     grid-template-columns: 2fr 1fr;
@@ -564,33 +557,17 @@ img {
   }
 }
 
-/* Side spacing similar to hero */
-@media (min-width: 768px) {
-  .about-section--hero .container,
-  .about-section .container {
-    margin-inline: 16px;
-  }
-}
-@media (min-width: 992px) {
-  .about-section--hero .container,
-  .about-section .container {
-    margin-inline: 48px;
-  }
-}
-@media (min-width: 1400px) {
-  .about-section--hero .container,
-  .about-section .container {
-    margin-inline: 192px;
-  }
+.about-section--hero .container,
+.about-section .container {
+  margin-inline: var(--page-margin);
 }
 @media (max-width: 576px) {
   .menu-container {
-    padding: 0 16px;
+    padding: 0 var(--gutter-sm);
   }
   .menu-grid {
     grid-template-columns: 1fr;
     row-gap: 0;
-    /* On small screens, let the grid span full width */
     width: 100%;
   }
   .menu-title {
@@ -636,6 +613,17 @@ img {
 .work-section {
   padding-top: 96px;
 }
+.work-section .about-container {
+  padding: 0 var(--gutter);
+}
+@media (max-width: 576px) {
+  .work-section .about-container {
+    padding: 0 var(--gutter-sm);
+  }
+}
+.work-section .bio-head {
+  padding: 0;
+}
 .work-hero-image {
   display: block;
   max-width: 992px;
@@ -648,26 +636,28 @@ img {
   width: 100%;
   height: auto;
 }
-/* Simple gallery styles */
 .gallery {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: var(--gallery-gap);
   margin: 24px 0 40px;
 }
 .gallery-photo {
   display: block;
-  max-width: min(100%, 992px);
-  max-width: 992px;
+  /* Ensure image + arrows fit within container */
+  max-width: calc(
+    min(100%, var(--gallery-max)) - (2 * var(--gallery-arrow-size)) -
+      (2 * var(--gallery-gap))
+  );
   height: auto;
 }
 .gallery-arrow {
   background: transparent;
   border: none;
   color: var(--uragentur-black);
-  width: 120px;
-  height: 120px;
+  width: var(--gallery-arrow-size);
+  height: var(--gallery-arrow-size);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -679,14 +669,13 @@ img {
 }
 .gallery-arrow img {
   display: block;
-  width: 96px;
+  width: calc(var(--gallery-arrow-size) * 0.8);
   height: auto;
 }
 .gallery-arrow--prev img {
   transform: rotate(180deg);
 }
 
-/* Text-based articles carousel */
 .text-gallery {
   display: flex;
   align-items: stretch;
@@ -695,7 +684,7 @@ img {
   margin: 24px 0 40px;
 }
 .article-card {
-  display: none; /* only the active card is shown */
+  display: none;
   background: var(--uragentur-white);
   color: var(--uragentur-black);
   padding: 24px;

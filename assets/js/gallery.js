@@ -4,18 +4,42 @@
     const photo = gallery.querySelector(".gallery-photo");
     const prev = gallery.querySelector(".gallery-arrow--prev");
     const next = gallery.querySelector(".gallery-arrow--next");
-    const list = (gallery.getAttribute("data-images") || "")
-      .split(",")
-      .map((s) => s.trim())
-      .filter(Boolean);
+    let listRaw = gallery.getAttribute("data-images") || "";
+    let list = [];
+    if (listRaw.trim().startsWith("[")) {
+      try {
+        const parsed = JSON.parse(listRaw);
+        if (Array.isArray(parsed)) list = parsed.filter(Boolean);
+      } catch (e) {
+        list = listRaw
+          .split(",")
+          .map((s) => s.trim())
+          .filter(Boolean);
+      }
+    } else {
+      list = listRaw
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean);
+    }
     let index = 0;
 
     function render() {
       if (!list.length) return;
       if (photo) photo.src = list[index];
-      const disabled = list.length <= 1;
-      if (prev) prev.disabled = disabled;
-      if (next) next.disabled = disabled;
+      const single = list.length <= 1;
+      const atFirst = index === 0;
+      const atLast = index === list.length - 1;
+      if (prev) {
+        prev.disabled = single || atFirst;
+        prev.style.visibility = atFirst ? "hidden" : "visible";
+        prev.setAttribute("aria-hidden", atFirst ? "true" : "false");
+      }
+      if (next) {
+        next.disabled = single || atLast;
+        next.style.visibility = atLast ? "hidden" : "visible";
+        next.setAttribute("aria-hidden", atLast ? "true" : "false");
+      }
     }
 
     prev?.addEventListener("click", () => {
@@ -47,9 +71,19 @@
       cards.forEach((c, i) => {
         c.classList.toggle("active", i === index);
       });
-      const disabled = cards.length <= 1;
-      if (prev) prev.disabled = disabled;
-      if (next) next.disabled = disabled;
+      const single = cards.length <= 1;
+      const atFirst = index === 0;
+      const atLast = index === cards.length - 1;
+      if (prev) {
+        prev.disabled = single || atFirst;
+        prev.style.visibility = atFirst ? "hidden" : "visible";
+        prev.setAttribute("aria-hidden", atFirst ? "true" : "false");
+      }
+      if (next) {
+        next.disabled = single || atLast;
+        next.style.visibility = atLast ? "hidden" : "visible";
+        next.setAttribute("aria-hidden", atLast ? "true" : "false");
+      }
     }
 
     prev?.addEventListener("click", () => {
